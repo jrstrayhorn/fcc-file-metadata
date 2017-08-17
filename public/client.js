@@ -6,21 +6,24 @@
 
 $(function() {
   console.log('hello world :o');
-  
-  $.get('/dreams', function(dreams) {
-    dreams.forEach(function(dream) {
-      $('<li></li>').text(dream).appendTo('ul#dreams');
-    });
-  });
 
-  $('form').submit(function(event) {
+  $('#uploadForm').submit(function(event) {
     event.preventDefault();
-    var dream = $('input').val();
-    $.post('/dreams?' + $.param({dream: dream}), function() {
-      $('<li></li>').text(dream).appendTo('ul#dreams');
-      $('input').val('');
-      $('input').focus();
-    });
+    var form = new FormData($('#uploadForm')[0]);
+    $.ajax({
+      url: '/filechecker',
+      method: "POST",
+      dataType: 'json',
+      data: form,
+      processData: false,
+      contentType: false,
+      success: function(result) {
+        $('#results').text('The file size is: ' + result)
+      },
+      error: function(er) {
+        $('#results').text('There was an error: ' + er)
+      }
+    })
   });
 
 });

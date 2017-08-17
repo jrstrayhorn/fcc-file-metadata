@@ -15,7 +15,7 @@ body {
 
 h1 {
   font-weight: bold;
-  color: pink;
+  color: green;
 }
 
 .bold {
@@ -29,7 +29,7 @@ p {
 form {
   margin-bottom: 25px;
   padding: 15px;
-  background-color: cyan;
+  background-color: lightgreen;
   display: inline-block;
   width: 100%;
   max-width: 340px;
